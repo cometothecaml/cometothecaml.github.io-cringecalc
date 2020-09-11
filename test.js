@@ -29,10 +29,17 @@ function updateCalc(param){
 function evaluate(){
     try{
         ans=eval(calcstring)
-        if (typeof(ans)==typeof(0.1)){
+	if (typeof(ans)==typeof(0.1)){
             ans=parseFloat(ans).toPrecision(12)/1
         }
-        document.getElementById("lol").innerHTML=ans
+	if (ans != Infinity && (typeof(ans)==typeof(0.1) ||typeof(ans)==typeof(1))){
+            document.getElementById("lol").innerHTML=ans
+        }
+        else
+        {
+            document.getElementById("lol").innerHTML="Math error"
+            ans=""
+        }
     
     }
     catch(error){
